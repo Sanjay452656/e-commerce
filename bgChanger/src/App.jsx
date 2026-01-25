@@ -1,33 +1,20 @@
-import { useState } from "react"
-import Navbar from "./components/Navbar"
-import Home from "./pages/Home"
-
-/*
-src/
- ┣ components/
- ┃ ┣ Navbar.jsx
- ┃ ┣ ProductCard.jsx
- ┃ ┗ CartItem.jsx
- ┣ pages/
- ┃ ┣ Home.jsx
- ┃ ┣ Cart.jsx
- ┃ ┗ ProductDetails.jsx
- ┣ context/
- ┃ ┗ CartContext.jsx
- ┣ services/
- ┃ ┗ api.js
- ┣ App.jsx
- ┗ main.jsx
-
-*/
+import { Routes, Route } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import Home from "./pages/Home";
+import Cart from "./pages/Cart";
+// import ProductDetails from "./pages/ProductDetails";
 
 function App() {
-
   return (
-    <div>
-    <Home/>
-    </div>
-  )
+    <>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/cart" element={<Cart />} />
+        {/* <Route path="/product/:id" element={<ProductDetails />} /> */}
+      </Routes>
+    </>
+  );
 }
 
-export default App
+export default App;
