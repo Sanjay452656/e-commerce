@@ -1,6 +1,7 @@
 import { useDispatch } from "react-redux";
 import {addToCart} from '../features/cartSlice'
 import { ShoppingCart } from "lucide-react";
+import { Link } from "react-router-dom";
 
 export default function ProductCard({ product }) {
   const dispatch = useDispatch();
@@ -8,11 +9,13 @@ export default function ProductCard({ product }) {
   return (
     <div className="group bg-white rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden">
       <div className="relative h-52 bg-gray-50 flex items-center justify-center">
-        <img
+        <Link to={`/product/${product.id}`} >
+          <img
           src={product.image}
           alt={product.title}
           className="h-40 object-contain group-hover:scale-105 transition-transform"
         />
+        </Link>
       </div>
 
       <div className="p-4 flex flex-col gap-2">
