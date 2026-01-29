@@ -36,13 +36,16 @@ const CartItem = ({ item }) => {
           </button>
           <span>{item.quantity}</span>
           <button
-          className="
+            className="
     px-3 py-1 border rounded
     transition-all duration-150
     hover:bg-gray-100
     active:scale-90
   "
-          onClick={() => dispatch(increaseQty(item.id))}>+</button>
+            onClick={() => dispatch(increaseQty(item.id))}
+          >
+            +
+          </button>
         </div>
       </div>
 
