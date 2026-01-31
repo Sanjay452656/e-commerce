@@ -6,9 +6,8 @@ import {
 } from "../features/cartSlice";
 
 const CartItem = ({ item }) => {
+  
   const dispatch = useDispatch();
-
-  //   if (!item) return null; // 🔐 safety guard
 
   return (
     <div className="flex items-center gap-4 border p-4 rounded-lg">

@@ -3,7 +3,7 @@ import CartItem from "../components/CartItem";
 
 export default function Cart() {
   const items = useSelector(state => state.cart.items);
-  console.log(items)
+  
   const total = items.reduce(
     (sum, item) => sum + item.price * item.quantity,
     0
