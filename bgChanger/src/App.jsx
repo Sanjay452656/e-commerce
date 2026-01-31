@@ -10,13 +10,20 @@ function App() {
   return (
     <>
       <Navbar />
-      <Register/>
-      {/* <Login/> */}
-      {/* <Routes>
+      <Register />
+      <Login />
+      <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/cart" element={<Cart />} />
+        <Route
+          path="/cart"
+          element={
+            <ProtectedRoute>
+              <Cart />
+            </ProtectedRoute>
+          }
+        />
         <Route path="/product/:id" element={<ProductDetails />} />
-      </Routes> */}
+      </Routes>
     </>
   );
 }
