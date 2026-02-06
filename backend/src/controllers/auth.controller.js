@@ -28,3 +28,26 @@ export const registerUser =async (req,res) => {
     })
     res.send("hello")
 }
+
+export const loginUser = async (req,res)=>{
+    const {email,password} = req.body;
+
+    const user = await User.findOne({email});
+    if(!user){
+        return res.status(400).json({message:"Invalid Credentials"})
+    }
+
+    const isMatch = await bcrypt.compare(password,user.password);
+    if(!isMatch){
+        return res.status(400).json({message:"Invalid Credentials"})
+    }
+
+    res.json({
+        token:generateToken(user._id),
+        user:{
+            id:user._id,
+            name:user.name,
+            email:user.email,
+        }
+    })
+}
