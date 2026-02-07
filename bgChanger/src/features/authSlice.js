@@ -5,7 +5,7 @@ const token = localStorage.getItem("token");
 const authSlice = createSlice({
   name: "auth",
   initialState: {
-    token: token || null,
+    token,
     isAuthenticated: !!token,//token ? true : false
   },
   reducers: {

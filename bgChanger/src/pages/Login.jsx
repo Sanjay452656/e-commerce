@@ -1,14 +1,32 @@
 import { useState } from "react";
+import {useDispatch} from "react-redux"
+import {useNavigate} from "react-router-dom"
+import { loginUser } from "../services/authApi";
+import { loginSuccess } from "../features/authSlice";
 
 const Login = () => {
+  
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error,setError] = useState("");
+  const [loading,setLoading] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
+    setError("");
 
-    // later: API call
-    console.log({ email, password });
+    try {
+      const data = await loginUser({email,password});
+      dispatch(loginSuccess(data.token));
+      navigate("/")
+    } catch (err) {
+      setError(err.response?.data?.message || "Login failed");
+    }
   };
 
   return (
@@ -34,7 +52,10 @@ const Login = () => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-
+        {error && <p>{error}</p>}
+      <button disabled={loading}>
+        {loading ? "Logging in..." : "Login"}
+      </button>
         <button className="w-full py-3 bg-gradient-to-r from-violet-500 to-fuchsia-500 rounded-xl">
           Login
         </button>

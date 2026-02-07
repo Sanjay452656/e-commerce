@@ -1,15 +1,24 @@
 import { useState } from "react";
+import {useDispatch} from "react-redux"
+import {useNavigate} from "react-router-dom"
+import { registerUser } from "../services/authApi";
+import { loginSuccess } from "../features/authSlice";
 
 const Register = () => {
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const [name, setName] = useState("")
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // later: API call
-    console.log({ name,email, password });
+    const data= await registerUser({name,email,password});
+    dispatch(loginSuccess(data.token));
+    navigate("/");
   };
 
   return (

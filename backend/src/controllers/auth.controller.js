@@ -26,7 +26,6 @@ export const registerUser =async (req,res) => {
             email:user.email,
         },
     })
-    res.send("hello")
 }
 
 export const loginUser = async (req,res)=>{
