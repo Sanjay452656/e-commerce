@@ -8,9 +8,10 @@ export default function Cart() {
     (sum, item) => sum + item.price * item.quantity,
     0
   );
-
+  
   if (items.length === 0) {
     return (
+      
       <div className="p-6 text-center text-xl">
         Your cart is empty 🛒
       </div>
