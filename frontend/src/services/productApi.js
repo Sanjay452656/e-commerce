@@ -6,7 +6,7 @@ export const fetchProducts = async () => {
 };
 
 export const fetchProductById = async (id) => {
-    const res= await apiClient.get(`products/${id}`);
+    const res= await apiClient.get(`/products/${id}`);
     return res.data;
 };
 

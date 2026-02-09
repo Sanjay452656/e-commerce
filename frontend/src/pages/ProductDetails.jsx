@@ -1,21 +1,37 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router'
-import { fetchProductById } from '../services/api';
+import { fetchProductById } from '../services/productApi';
 import { addToCart } from '../features/cartSlice';
 
 const ProductDetails = () => {
 
     const {id} = useParams();
     const dispatch = useDispatch();
+
     const [product,setProduct] = useState(null);
+    const [loading,setLoading] = useState(true);
 
     useEffect(()=>{
-        fetchProductById(id).then((data)=>setProduct(data));
+       if (!id) return;
+        const loadProduct = async () => {
+          try {
+            const data=await fetchProductById(id);
+            setProduct(data);
+          } catch (err) {
+            console.error("Product not found");
+          }finally{
+            setLoading(false);
+          }
+        }
+        loadProduct();
     },[id]);
 
+    if(loading){
+      return <div className='p-6'>Loading ...</div>
+    }
     if(!product) {
-        return <div className='p-6'>Loading...</div>
+        return <div className='p-6'>Product not found</div>
     }
 
   return (
