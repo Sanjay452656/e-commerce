@@ -6,17 +6,17 @@ import { addToCart } from '../features/cartSlice';
 
 const ProductDetails = () => {
 
-    const {id} = useParams();
+    const {_id} = useParams();
     const dispatch = useDispatch();
 
     const [product,setProduct] = useState(null);
     const [loading,setLoading] = useState(true);
 
     useEffect(()=>{
-       if (!id) return;
+       if (!_id) return;
         const loadProduct = async () => {
           try {
-            const data=await fetchProductById(id);
+            const data=await fetchProductById(_id);
             setProduct(data);
           } catch (err) {
             console.error("Product not found");
@@ -25,7 +25,7 @@ const ProductDetails = () => {
           }
         }
         loadProduct();
-    },[id]);
+    },[_id]);
 
     if(loading){
       return <div className='p-6'>Loading ...</div>

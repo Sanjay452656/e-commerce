@@ -9,7 +9,7 @@ export default function ProductCard({ product }) {
   return (
     <div className="group bg-white rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden">
       <div className="relative h-52 bg-gray-50 flex items-center justify-center">
-        <Link to={`/product/${product.id}`} >
+        <Link to={`/product/${product._id}`} >
           <img
           src={product.image}
           alt={product.title}
