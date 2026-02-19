@@ -1,14 +1,25 @@
-import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { ShoppingCart } from "lucide-react";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { LogOut, ShoppingCart } from "lucide-react";
+import { logout } from "../features/authSlice";
 
 const Navbar = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const items = useSelector(state => state.cart.items);
+  const isAuth = useSelector((state) => state.auth.isAuthenticated);
 
   const cartCount = items.reduce(
     (sum, item) => sum + item.quantity,
     0
   );
+
+  
+  const handleLogout = () => {
+    dispatch(logout());
+    navigate("/login");
+  };
 
   return (
     <nav className="sticky top-0 z-50 bg-white border-b">
@@ -40,6 +51,18 @@ const Navbar = () => {
               </span>
             )}
           </Link>
+           {isAuth ? (
+          <button
+            onClick={handleLogout}
+            className="btn-secondary"
+          >
+            Logout
+          </button>
+        ) : (
+          <Link to="/login" className="btn-primary">
+            Login
+          </Link>
+        )}
         </div>
       </div>
     </nav>
