@@ -29,7 +29,7 @@ const CartItem = ({ item }) => {
     hover:bg-gray-100
     active:scale-90
   "
-            onClick={() => dispatch(decreaseQty(item.id))}
+            onClick={() => dispatch(decreaseQty(item._id))}
           >
             −
           </button>
@@ -41,7 +41,7 @@ const CartItem = ({ item }) => {
     hover:bg-gray-100
     active:scale-90
   "
-            onClick={() => dispatch(increaseQty(item.id))}
+            onClick={() => dispatch(increaseQty(item._id))}
           >
             +
           </button>
@@ -55,7 +55,7 @@ const CartItem = ({ item }) => {
     hover:bg-gray-100
     active:scale-90
   "
-        onClick={() => dispatch(removeFromCart(item.id))}
+        onClick={() => dispatch(removeFromCart(item._id))}
       >
         Remove
       </button>
